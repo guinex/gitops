@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orderprocessor
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: orderprocessor
+  template:
+    metadata:
+      labels:
+        app: orderprocessor
+    spec:
+      containers:
+        - name: orderprocessor
+          image: registry.local:5000/orderprocessor:1.0.0   # <-- Update this tag when needed
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://<ClusterA_VM_IP>:31432/<DB_NAME>
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: username
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: password
