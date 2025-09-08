@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: orderprocessor
-          image: http://127.0.0.1:5000/orderprocessor:20250908043241   # <-- Update this tag when needed
+          image: 127.0.0.1:5000/orderprocessor:20250908043241   # <-- Update this tag when needed
           ports:
             - containerPort: 8080
           env:
