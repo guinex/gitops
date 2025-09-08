@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: orderprocessor
-          image: registry.local:5000/orderprocessor:1.0.0   # <-- Update this tag when needed
+          image: registry.local:5000/orderprocessor:latest   # <-- Update this tag when needed
           ports:
             - containerPort: 8080
           env:
