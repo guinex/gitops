@@ -15,19 +15,13 @@ spec:
     spec:
       containers:
         - name: orderprocessor
-          image: registry.local:5000/orderprocessor:latest   # <-- Update this tag when needed
+          image: registry.local:5000/orderprocessor:20250908043241   # <-- Update this tag when needed
           ports:
             - containerPort: 8080
           env:
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:postgresql://<ClusterA_VM_IP>:31432/<DB_NAME>
+              value: jdbc:postgresql://192.168.0.243:31432/erp
             - name: SPRING_DATASOURCE_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: postgres-secret
-                  key: username
+              value: postgres
             - name: SPRING_DATASOURCE_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: postgres-secret
-                  key: password
+              value: postgres
